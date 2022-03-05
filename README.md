@@ -6,7 +6,7 @@
 O desafio consistia em desenvolver uma aplicativo de acordo com o template abaixo:
 [Projeto no Figma](https://www.figma.com/file/UgZj1C1DWJlVftvMLz1Aq9/Dev-Meet?node-id=0%3A1)
 
-<div style="text-align: center; height: 300px">
+<div align="center" style="height: 300px">
     <img src="assets/app.gif" height="300" />
 </div>
 
