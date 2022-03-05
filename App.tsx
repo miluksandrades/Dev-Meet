@@ -1,20 +1,45 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { StatusBar } from "expo-status-bar";
+import { Category } from "./src/screens/Category";
+import { EventDetail } from "./src/screens/Category/EventDetail";
+import { Home } from "./src/screens/Home";
+import AppLoading from "expo-app-loading";
+import { useEffect, useState } from "react";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const [isActive, setIsActive] = useState(false);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  useEffect(() =>{
+    setIsActive(true);
+  }, [])
+
+  if (!isActive) {
+    return <AppLoading />;
+  } else {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Category"
+            component={Category}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="EventDetail"
+            component={EventDetail}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+        <StatusBar style="light" />
+      </NavigationContainer>
+    );
+  }
+}
